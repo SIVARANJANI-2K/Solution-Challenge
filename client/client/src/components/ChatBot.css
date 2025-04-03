@@ -1,0 +1,28 @@
+/* ChatBot.css */
+.chatbot-container {
+    z-index: 1000;
+}
+
+.chatbot-card {
+    width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    font-weight: bold;
+    text-align: center;
+}
+
+textarea.form-control {
+    resize: none;
+}
+
+.chatbot-card p {
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    white-space: pre-wrap;
+}
