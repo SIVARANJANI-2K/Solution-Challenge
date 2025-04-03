@@ -50,6 +50,34 @@ const getJobListings = async (income) => {
     return response.data;
 };
 
+const { GoogleGenAI } = require('@google/genai');
+const dotenv = require('dotenv');
+dotenv.config();
+
+
+app.use(express.json());
+
+const api = process.env.GEMINI_API_KEY;
+const ai = new GoogleGenAI({ apiKey: api });
+
+app.post('/api/chat', async (req, res) => {
+    try {
+        const userInput = req.body.message;
+        const response = await ai.models.generateContent({
+            model: "gemini-2.0-flash",
+            contents: userInput,
+        });
+        res.json({ reply: response.text });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to get a response" });
+    }
+});
+
+
+
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
